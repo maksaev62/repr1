@@ -77,12 +77,12 @@
 
 <p align="center">
 <img src="https://github.com/maksaev62/repr1/blob/main/Фото/DFD.png?raw=true"></p>
-<p align="center">Рисунок 1 - UseCase диаграмма</p>
+<p align="center">Рисунок 2 - DFD диаграмма</p>
 Затем на основе DFD диаграммы создается ER диаграмма, на которой описываются связи участников между собой внутри системы (рисунок 3).
 
 <p align="center">
 <img src="https://github.com/maksaev62/repr1/blob/main/Фото/ER.png?raw=true"></p>
-<p align="center">Рисунок 1 - UseCase диаграмма</p>                     
+<p align="center">Рисунок 3 - ER диаграмма</p>                     
 
 ## 2.2 Этап реализации <a name="реализация"></a>
 
