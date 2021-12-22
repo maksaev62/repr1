@@ -70,23 +70,139 @@
 
 ## 3.1 Этап проектирования <a name="проектирование"></a>
 
-Этап проектирования начинаеться с описания главных лиц, учавствовавших в бизнес-процессе.
+Этап проектирования начинаеться с описания главных лиц, учавствовавших в бизнес-процессе (рисунок 1).
+
+<p align="center">
 ![image](https://user-images.githubusercontent.com/92459148/147114362-5529ca1c-2a12-4fce-a706-0111982564ed.png)
+<p align="center">Рисунок 1 - UseCase диаграмма</p>
 
-                                                Рисунок - 1 UseCase диаграмма.
+Далее на основе UseCase диаграммы описываются действия участников процесса, с помощью DFD диаграммы (рисунок 2).
 
-Далее на основе UseCase диаграммы описываются действия участников процесса, с помощью DFD диаграммы.
+<p align="center">
 ![image](https://user-images.githubusercontent.com/92459148/147116051-db246c64-33af-4fd4-84ee-743aa48a99be.png)
-
-                                                Рисунок - 2 DFD диаграмма.
+<p align="center">Рисунок 2 - DFD диаграмма</p>
                                                 
-Затем на основе DFD диаграммы создается ER диаграмма, на которой описываются связи участников между собой внутри системы.
-![image](https://user-images.githubusercontent.com/92459148/147117899-aff6faa2-b1ae-408c-96b0-09ccb88a3d1e.png)
+Затем на основе DFD диаграммы создается ER диаграмма, на которой описываются связи участников между собой внутри системы (рисунок 3).
 
-Рисунок - 3 ER диаграмма.                      
+<p align="center">
+![image](https://user-images.githubusercontent.com/92459148/147117899-aff6faa2-b1ae-408c-96b0-09ccb88a3d1e.png)
+<p align="center">Рисунок 3 - ER диаграмма</p>                      
 
 ## 3.2 Этап реализации <a name="реализация"></a>
 
+На основе ER-диаграммы создадим класс с указанием полей, параметров и типов данных для каждой сущности. 
+Приведём пример создания класса для сущности Client (листинг 1):
+
+Листинг 1 - Класс "Клиент"
+```C# 
+    public class Client
+    {
+
+        public int ClientId { get; set; }
+
+        public string FullName { get; set; }
+
+        public DateTime BirthdayDate { get; set; }
+
+        public string PhoneNumber { get; set; }
+    }
+```
+
+Таким же создадим классы для автоподборщика, машины, оплаты и заказа .
+
+Далее для каждой сущности создаём контроллеры с методами Create, Read, Update, Delite.
+Приведём пример создания контроллера для сущности Client (листинг 2):
+
+Листинг 2 - Контроллер класса "Клиент"
+```csharp 
+[ApiController]
+    [Route("/client")]
+    public class ClientController : ControllerBase
+    {
+        [HttpPut]
+        public Client Create(Client client)
+        {
+            Storage.ClientStorage.Create(client);
+            return client;
+        }
+
+        [HttpGet]
+        public Client Read(int clientId)
+        {
+            return Storage.ClientStorage.Read(clientId);
+        }
+
+        [HttpPost]
+        public Client Update(int clientId, Client newClient)
+        {
+            return Storage.ClientStorage.Update(clientId, newClient);
+        }
+
+        [HttpDelete]
+        public bool Delete(int clientId)
+        {
+            return Storage.ClientStorage.Delete(clientId); ;
+        }
+    }
+}
+```
+Таким же образом создаём контроллеры для оставшихся классов.
+
+Затем создаём хранилище для каждого класса. Пример создания хранилища для класса Client (листинг 3):
+
+Листинг 3 - Хранилище класса "Клиент"
+```csharp
+     public class ClientStorage
+    {
+        private Dictionary<int, Client> Clients { get; } = new Dictionary<int, Client>();
+        //private SqlConnection Connection { get; } = new SqlConnection("Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;");
+        //public ClientStorage() => Connection.Open();
+
+        public void Create(Client client)
+        {
+            Clients.Add(client.ClientId, client);
+            //var command = Connection.CreateCommand();
+            //command.CommandText = "SELECT * FROM .....";
+            //command.ExecuteNonQuery
+            //command.ExecuteReader
+            //command.ExecuteScalar
+        }
+
+        public Client Read(int clientId)
+        {
+            return Clients[clientId];
+        }
+
+        public Client Update(int clientId, Client newClient)
+        {
+            Clients[clientId] = newClient;
+            return Clients[clientId];
+        }
+
+        public bool Delete(int clientId)
+        {
+            return Clients.Remove(clientId);
+        }
+    }
+}
+```
+
+Таким же образом создаём хранилища для оставшихся классов, после чего создаём общее хранилище (листинг 4):
+
+Листинг 4 - Общее хранилище
+```csharp
+namespace repr1.Repository
+{
+    public static class Storage
+    {
+        public static readonly ClientStorage clientStorage = new();
+        public static readonly CarStorage CarStorage = new();
+        public static readonly RequestStorage RequestStorage = new();
+        public static readonly PaymentStorage PaymentStorage = new();
+        public static readonly AutopickerStorage AutopickerStorage = new();
+    }
+}
+```
 
 
 ***
