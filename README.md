@@ -70,20 +70,19 @@
 Этап проектирования начинаеться с описания главных лиц, учавствовавших в бизнес-процессе (рисунок 1).
 
 <p align="center">
-![image](https://user-images.githubusercontent.com/92459148/147114362-5529ca1c-2a12-4fce-a706-0111982564ed.png)
+<img src="https://github.com/maksaev62/repr1/blob/main/Фото/USE%20CASE.png?raw=true"></p>
 <p align="center">Рисунок 1 - UseCase диаграмма</p>
 
 Далее на основе UseCase диаграммы описываются действия участников процесса, с помощью DFD диаграммы (рисунок 2).
 
 <p align="center">
-![image](https://user-images.githubusercontent.com/92459148/147116051-db246c64-33af-4fd4-84ee-743aa48a99be.png)
-<p align="center">Рисунок 2 - DFD диаграмма</p>
-                                                
+<img src="https://github.com/maksaev62/repr1/blob/main/Фото/DFD.png?raw=true"></p>
+<p align="center">Рисунок 1 - UseCase диаграмма</p>
 Затем на основе DFD диаграммы создается ER диаграмма, на которой описываются связи участников между собой внутри системы (рисунок 3).
 
 <p align="center">
-![image](https://user-images.githubusercontent.com/92459148/147117899-aff6faa2-b1ae-408c-96b0-09ccb88a3d1e.png)
-<p align="center">Рисунок 3 - ER диаграмма</p>                      
+<img src="https://github.com/maksaev62/repr1/blob/main/Фото/ER.png?raw=true"></p>
+<p align="center">Рисунок 1 - UseCase диаграмма</p>                     
 
 ## 2.2 Этап реализации <a name="реализация"></a>
 
