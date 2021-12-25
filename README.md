@@ -72,7 +72,7 @@
 Этап проектирования начинаеться с описания главных лиц, учавствовавших в бизнес-процессе (рисунок 1).
 
 <p align="center">
-<img src="https://github.com/maksaev62/repr1/blob/main/Фото/USE%20CASE.png?raw=true"></p>
+<img src="https://github.com/maksaev62/repr1/blob/main/Фото/USECASE.png?raw=true"></p>
 <p align="center">Рисунок 1 - UseCase диаграмма</p>
 
 Далее на основе UseCase диаграммы описываются действия участников процесса, с помощью DFD диаграммы (рисунок 2).
